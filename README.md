@@ -14,3 +14,9 @@ Project Guidance :
 
 5. Main Controller class - 'com.atul.spring.mvc.OperationsController.java'.
 
+6. Package structure for Controller class - 'com.atul.spring.mvc'
+
+7. Package structure for xml files - 'webapp/WEB-INF/'
+
+
+
