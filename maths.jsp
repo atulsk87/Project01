@@ -30,17 +30,11 @@
         
         <c:out value="History:"></c:out>
         
-        <%
-        String str = String.valueOf(request.getSession().getAttribute("oldExpressions"));
-        String[] strArray = str.split("|");
-          
-        for(int i = 0; i< strArray.length; i++)
-        {
-        %>
-        	<c:out value="<%=strArray[i]%>"></c:out>
-        <%
-        } 
-        %>
+        <c:if test="${not empty lists}">
+    <c:forEach items="${lists}" var="lists">
+       ${lists}
+</c:forEach>
+</c:if>
         
     </body>
      </form:form>    

@@ -1,5 +1,6 @@
 package com.atul.spring.mvc;
 
+import java.util.LinkedList;
 import java.util.Stack;
 import java.util.StringTokenizer;
 
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 
 
@@ -18,23 +20,28 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class OperationsController {
 	
 	@RequestMapping(value="/maths.jsp", method = RequestMethod.POST)
-    public String calculateExpression(HttpServletRequest request, ModelMap model)
+    public ModelAndView calculateExpression(HttpServletRequest request, ModelMap model)
     {
 		System.out.println("OperationsController.......!!!!!!!");
+		ModelAndView map = new ModelAndView("maths");
 		String sm = "";
 		if(checkParenthesesDepth(request.getParameter("expression")) == -1)
 			sm = "Invalid arithmetic expression. Please check the parentheses.";
 		else
 			sm = String.valueOf(evaluateInfix(request.getParameter("expression")));
-        model.addAttribute("message", sm);
+        map.addObject("message", sm);
+        
         
         HttpSession session = request.getSession();
         String str = String.valueOf(request.getAttribute("oldExpressions"));
         StringBuilder strb = new StringBuilder(str);
         strb.append(" | "+sm);
+        str = strb.toString();
         session.setAttribute("oldExpressions", strb.toString());
         
-        return "maths";
+        String[] strList = str.split("|");
+        map.addObject("lists", strList);
+        return map;
     }
 	
 
