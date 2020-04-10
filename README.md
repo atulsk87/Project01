@@ -18,5 +18,8 @@ Project Guidance :
 
 7. Package structure for xml files - 'webapp/WEB-INF/'
 
+8. Package structure for Unit Test Case - 'src/test/java/'.
+
+
 
 
